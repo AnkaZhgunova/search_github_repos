@@ -92,9 +92,12 @@ class _SearchPageState extends State<SearchPage> {
                     height: 10,
                   ),
                   if (state is SearchResultsState && state.repos != null)
-                    if ((state.repos ?? []).isEmpty)
+                    if ((state.repos ?? []).isEmpty) ...[
+                      const SizedBox(
+                        height: 150,
+                      ),
                       const EmptyBox(text: AppConstants.noResult)
-                    else
+                    ] else
                       ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -121,10 +124,14 @@ class _SearchPageState extends State<SearchPage> {
                     SearchHistoryList(
                       historyList: historyList,
                     )
-                  else
+                  else ...[
+                    const SizedBox(
+                      height: 150,
+                    ),
                     const EmptyBox(
                       text: AppConstants.emptyHistory,
                     ),
+                  ],
                 ],
               ),
             ),
